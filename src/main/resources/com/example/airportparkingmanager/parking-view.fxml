@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.example.airportparkingmanager.ParkingController"
+           stylesheets="@css/style.css">
+
+    <!-- 🌄 Image de fond (fond d’écran flouté / atténué) -->
+   <!-- <ImageView fitWidth="1200" fitHeight="800" preserveRatio="false" opacity="0.25">
+        <image>
+            <Image url="@com/example/airportparkingmanager/img/img2Airport.jpg" />
+        </image>
+    </ImageView> -->
+
+    <!-- Contenu principal par-dessus le fond -->
+    <VBox spacing="20">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <!-- 🧭 Haut de la page : logo + titre + date/heure -->
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <!-- 🛫 Logo de l’aéroport -->
+           <!-- <ImageView fitHeight="60" fitWidth="60" preserveRatio="true">
+                <image>
+                    <Image url="@com/example/airportparkingmanager/img/logoAirport.jpeg" />
+                </image>
+            </ImageView> -->
+
+            <!-- Titre de l'application -->
+            <Label text="Parking de l'Aéroport" style="-fx-font-size: 26px; -fx-font-weight: bold;" />
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <!-- Date et heure actuelles -->
+            <VBox alignment="CENTER_RIGHT" spacing="5">
+                <Label fx:id="heureLabel" text="00:00:00" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                <Label fx:id="dateLabel" text="Date et Heure actuelle" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            </VBox>
+        </HBox>
+
+        <!-- Entrée / Sortie véhicule -->
+        <HBox spacing="15" alignment="CENTER">
+            <TextField fx:id="entreePlaqueInput" promptText="Entrez la plaque" />
+            <Button text="Entrer" onAction="#enregistrerEntreeVehicule" />
+            <Region minWidth="30" />
+            <TextField fx:id="sortiePlaqueInput" promptText="Entrez la plaque" />
+            <Button text="Sortir" onAction="#enregistrerSortieVehicule" />
+        </HBox>
+
+        <!-- Onglets principaux -->
+        <HBox spacing="20">
+            <!-- TabPane -->
+            <TabPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                <tabs>
+                    <Tab text="Véhicules en stationnement">
+                        <ListView fx:id="vehiculeInParking" />
+                    </Tab>
+                    <Tab text="Historique des stationnements">
+                        <ListView fx:id="parkHistoryList" />
+                    </Tab>
+                    <Tab text="Abonnements">
+                        <HBox spacing="15">
+                            <VBox spacing="10">
+                                <ListView fx:id="abonnementsList" />
+                            </VBox>
+                            <VBox spacing="10">
+                                <TextField fx:id="abonnementPlaqueInput" promptText="Entrez la plaque" />
+                                <HBox spacing="10">
+                                    <fx:define>
+                                        <ToggleGroup fx:id="choiceGroup"/>
+                                    </fx:define>
+                                    <RadioButton text="Annuel" toggleGroup="$choiceGroup" fx:id="optionA"/>
+                                    <RadioButton text="Mensuel" toggleGroup="$choiceGroup" fx:id="optionB"/>
+                                </HBox>
+                                <Button text="Créer un abonnement" onAction="#enregistrerAbonnement" />
+                            </VBox>
+                        </HBox>
+                    </Tab>
+                </tabs>
+            </TabPane>
+
+            <!-- 🖼️ Image décorative (img2Airport.jpg à droite) -->
+<!-- <ImageView fitHeight="200" fitWidth="200" preserveRatio="true">
+                <image>
+                    <Image url="@com/example/airportparkingmanager/img/img2Airport.jpg" />
+                </image>
+            </ImageView> -->
+        </HBox>
+
+    </VBox>
+</StackPane>
